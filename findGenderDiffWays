@@ -1,3 +1,6 @@
+from sklearn.metrics import accuracy_score
+import numpy as np
+
 X_train = [[181, 80, 44], [177, 70, 43], [160, 60, 38], [154, 54, 37], [166, 65, 40],
      [190, 90, 47], [175, 64, 39],
      [177, 70, 40], [159, 55, 37], [171, 75, 42], [181, 85, 43]]
@@ -12,19 +15,27 @@ Y_test = ['male', 'female', 'female']
 from sklearn.neighbors import KNeighborsClassifier
 clf_kNN = KNeighborsClassifier(n_neighbors=3,algorithm='auto').fit(X_train,Y_train)
 print ("K neighbours prediction is", clf_kNN.predict([[190,70,43]]))
-print ("K neighbours prediction is", clf_kNN.score(X_test,Y_test))
+print ("K neighbours score is", clf_kNN.score(X_test,Y_test))
+acc_kNN = accuracy_score(Y_test, clf_kNN.predict(X_test))
 
 from sklearn.naive_bayes import GaussianNB
 clf_NB = GaussianNB().fit(X_train,Y_train)
 print ("Naive Byes prediction is", clf_NB.predict([[190,70,43]]))
 print ("Naive Byes score is", clf_NB.score(X_test,Y_test))
+acc_NB = accuracy_score(Y_test, clf_NB.predict(X_test))
 
 from sklearn.svm import SVC
 clf_svc = SVC().fit(X_train,Y_train)
 print ("SVC prediction is", clf_svc.predict([[190,70,43]]))
 print ("SVC score is", clf_svc.score(X_test,Y_test))
+acc_svc = accuracy_score(Y_test, clf_svc.predict(X_test))
 
 from sklearn.tree import DecisionTreeClassifier
 clf_DT = DecisionTreeClassifier(random_state=0).fit(X_train,Y_train)
 print ("Decision Tree prediction is", clf_DT.predict([[190,70,43]]))
 print ("Decision Tree prediction is", clf_DT.score(X_test,Y_test))
+acc_DT = accuracy_score(Y_test, clf_DT.predict(X_test))
+
+index = np.argmax([acc_svc, acc_DT, acc_kNN, acc_NB])
+classifiers = {0: 'SVM', 1: 'Decision Tree', 2: 'KNN', 3:'acc_NB'}
+print('Best gender classifier is {}'.format(classifiers[index]))
