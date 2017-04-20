@@ -10,21 +10,21 @@ X_test = [[179,54,22], [134,45,23], [118,34,24]]
 Y_test = ['male', 'female', 'female']
 
 from sklearn.neighbors import KNeighborsClassifier
-clf = KNeighborsClassifier(n_neighbors=3,algorithm='auto').fit(X_train,Y_train)
-print ("K neighbours prediction is", clf.predict([[190,70,43]]))
-print ("K neighbours prediction is", clf.score(X_test,Y_test))
+clf_kNN = KNeighborsClassifier(n_neighbors=3,algorithm='auto').fit(X_train,Y_train)
+print ("K neighbours prediction is", clf_kNN.predict([[190,70,43]]))
+print ("K neighbours prediction is", clf_kNN.score(X_test,Y_test))
 
 from sklearn.naive_bayes import GaussianNB
-clf = GaussianNB().fit(X_train,Y_train)
-print ("Naive Byes prediction is", clf.predict([[190,70,43]]))
-print ("Naive Byes score is", clf.score(X_test,Y_test))
+clf_NB = GaussianNB().fit(X_train,Y_train)
+print ("Naive Byes prediction is", clf_NB.predict([[190,70,43]]))
+print ("Naive Byes score is", clf_NB.score(X_test,Y_test))
 
 from sklearn.svm import SVC
-clf = SVC().fit(X_train,Y_train)
-print ("SVC prediction is", clf.predict([[190,70,43]]))
-print ("SVC score is", clf.score(X_test,Y_test))
+clf_svc = SVC().fit(X_train,Y_train)
+print ("SVC prediction is", clf_svc.predict([[190,70,43]]))
+print ("SVC score is", clf_svc.score(X_test,Y_test))
 
 from sklearn.tree import DecisionTreeClassifier
-clf = DecisionTreeClassifier(random_state=0).fit(X_train,Y_train)
-print ("Decision Tree prediction is", clf.predict([[190,70,43]]))
-print ("Decision Tree prediction is", clf.score(X_test,Y_test))
+clf_DT = DecisionTreeClassifier(random_state=0).fit(X_train,Y_train)
+print ("Decision Tree prediction is", clf_DT.predict([[190,70,43]]))
+print ("Decision Tree prediction is", clf_DT.score(X_test,Y_test))
